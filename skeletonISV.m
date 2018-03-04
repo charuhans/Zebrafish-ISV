@@ -50,9 +50,10 @@ function skeletonISV( pathData, pathSkeletonISV, fid)
        MIJ.run("Analyze Skeleton (2D/3D)", "prune=none calculate");
        bw = MIJ.getCurrentImage();
        fileName = strcat(pathSkeletonISV, '\', imagefiles(idx).name);
-       bw = uint8(bw / 256);
-       bw = im2uint8(bw*255);
-       imwrite(bw,fileName,'tif','Compression','none');  
+       %bw = uint8(bw / 256);
+       %bw = im2uint8(bw*255);
+       image8Bit = uint8(255 * mat2gray(bw));
+       imwrite(image8Bit,fileName,'tif','Compression','none');  
        MIJ.run('Close');
        MIJ.run('Close');
        MIJ.run('Close');
@@ -61,4 +62,3 @@ function skeletonISV( pathData, pathSkeletonISV, fid)
     end
 
 end
-
